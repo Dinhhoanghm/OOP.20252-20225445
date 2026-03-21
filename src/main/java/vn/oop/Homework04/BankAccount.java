@@ -41,4 +41,27 @@ public class BankAccount {
         return balance;
     }
 
+    public void deposit(double amount) {
+        if (amount <= 0) {
+            System.out.println("[" + accountNumber + "] Nạp tiền thất bại: số tiền phải lớn hơn 0.");
+            return;
+        }
+        balance += amount;
+        System.out.println("[" + accountNumber + "] Nạp tiền thành công: +" + amount + " | Số dư mới: " + balance);
+    }
+
+    public void withdraw(double amount) {
+        if (amount <= 0) {
+            System.out.println("[" + accountNumber + "] Rút tiền thất bại: số tiền phải lớn hơn 0.");
+            return;
+        }
+        if (balance - amount < MINIMUM_BALANCE) {
+            System.out.println("[" + accountNumber + "] Rút tiền thất bại: số dư sẽ thấp hơn mức tối thiểu "
+                    + MINIMUM_BALANCE + ". Số dư hiện tại: " + balance);
+            return;
+        }
+        balance -= amount;
+        System.out.println("[" + accountNumber + "] Rút tiền thành công: -" + amount + " | Số dư mới: " + balance);
+    }
+
 }
