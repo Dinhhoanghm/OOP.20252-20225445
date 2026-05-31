@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.hw14.controller.DateController"
+      spacing="16" prefWidth="480"
+      style="-fx-padding: 24; -fx-background-color: #ECEFF1;">
+
+    <fx:define>
+        <ToggleGroup fx:id="directionGroup"/>
+        <ToggleGroup fx:id="unitGroup"/>
+    </fx:define>
+
+    <!-- Title -->
+    <Label text="Date Display Application"
+           style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #1565C0;"/>
+
+    <!-- Date Selection & Display card -->
+    <VBox spacing="10"
+          style="-fx-background-color: white; -fx-padding: 16;
+                 -fx-background-radius: 8;
+                 -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.12), 6, 0, 0, 2);">
+
+        <Label text="Date Selection"
+               style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #424242;"/>
+
+        <GridPane hgap="12" vgap="10">
+            <columnConstraints>
+                <ColumnConstraints minWidth="120" halignment="RIGHT"/>
+                <ColumnConstraints hgrow="ALWAYS"/>
+            </columnConstraints>
+
+            <Label text="Pick a date:" GridPane.columnIndex="0" GridPane.rowIndex="0"
+                   GridPane.halignment="RIGHT"/>
+            <DatePicker fx:id="datePicker" prefWidth="200"
+                        GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+
+            <Label text="Format:" GridPane.columnIndex="0" GridPane.rowIndex="1"
+                   GridPane.halignment="RIGHT"/>
+            <ComboBox fx:id="formatBox" prefWidth="200"
+                      GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+
+            <Label text="Displayed date:" GridPane.columnIndex="0" GridPane.rowIndex="2"
+                   GridPane.halignment="RIGHT"/>
+            <Label fx:id="dateLabel" GridPane.columnIndex="1" GridPane.rowIndex="2"
+                   style="-fx-font-size: 15px; -fx-font-weight: bold; -fx-text-fill: #1976D2;"/>
+        </GridPane>
+    </VBox>
+
+    <!-- Date Calculation card -->
+    <VBox spacing="10"
+          style="-fx-background-color: white; -fx-padding: 16;
+                 -fx-background-radius: 8;
+                 -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.12), 6, 0, 0, 2);">
+
+        <Label text="Date Calculation"
+               style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #424242;"/>
+
+        <GridPane hgap="12" vgap="10">
+            <columnConstraints>
+                <ColumnConstraints minWidth="120" halignment="RIGHT"/>
+                <ColumnConstraints hgrow="ALWAYS"/>
+            </columnConstraints>
+
+            <Label text="Amount (x):" GridPane.columnIndex="0" GridPane.rowIndex="0"
+                   GridPane.halignment="RIGHT"/>
+            <TextField fx:id="inputField" prefWidth="140" promptText="Positive integer"
+                       GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+
+            <Label text="Direction:" GridPane.columnIndex="0" GridPane.rowIndex="1"
+                   GridPane.halignment="RIGHT"/>
+            <HBox spacing="16" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                <RadioButton fx:id="beforeRadio" text="Before" toggleGroup="$directionGroup"/>
+                <RadioButton fx:id="afterRadio"  text="After"  toggleGroup="$directionGroup"/>
+            </HBox>
+
+            <Label text="Unit:" GridPane.columnIndex="0" GridPane.rowIndex="2"
+                   GridPane.halignment="RIGHT"/>
+            <HBox spacing="16" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                <RadioButton fx:id="daysRadio"   text="Days"   toggleGroup="$unitGroup"/>
+                <RadioButton fx:id="monthsRadio" text="Months" toggleGroup="$unitGroup"/>
+                <RadioButton fx:id="yearsRadio"  text="Years"  toggleGroup="$unitGroup"/>
+            </HBox>
+        </GridPane>
+
+        <Button fx:id="calculateButton" text="Apply" onAction="#handleCalculate"
+                style="-fx-background-color: #1976D2; -fx-text-fill: white;
+                       -fx-padding: 7 22; -fx-background-radius: 4;
+                       -fx-font-size: 13px; -fx-cursor: hand;"/>
+
+        <Label fx:id="validationLabel" text=""
+               style="-fx-text-fill: #C62828; -fx-font-size: 12px;"/>
+
+        <Separator/>
+
+        <Label fx:id="outputLabel" text=""
+               style="-fx-font-size: 15px; -fx-font-weight: bold; -fx-text-fill: #2E7D32;"/>
+    </VBox>
+</VBox>
